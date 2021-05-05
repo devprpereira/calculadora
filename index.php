@@ -24,4 +24,44 @@
         <button id="sendButton" type="submit">Calcular</button>
     </form>
 </div>
+
+<script>
+$(document).ready(function(){
+   
+        $("#sendButton").click(function(){
+            event.preventDefault();
+            try{ 
+                if ($("#n1").val() == "")
+                    throw new Error("Deve ser inserido um número no campo 'Número 1'");
+                
+                if ($("#n2").val() == "")
+                    throw new Error("Deve ser inserido um número no campo 'Número 2'");
+                }
+            catch (e){
+                window.alert(e);
+            }
+            //convertendo valor do campo do input para Inteiro
+            const n1 = parseInt($("#n1").val());
+            const n2 = parseInt($("#n2").val());
+            
+
+            $.ajax({
+                url : "calculator.php",
+                async : true,
+                method: "POST",
+                data: {
+                    'n1' : n1,
+                    'n2' : n2
+                },
+                datatype : 'json',
+                success : function(result){
+                    console.log(result);
+                }
+            });
+        });
+
+    
+});
+</script>
+
 </body>
