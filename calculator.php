@@ -1,0 +1,46 @@
+<?php 
+/**
+ * @author: Paulo Roberto
+ * @version: 1.0.0
+ * @copyright: Copyright (c) 2002, Paulo Roberto (github.com/prpereira31)
+ * @since: 05/06/2021
+ */
+
+header('Content-Type: application/json; charset: utf-8');
+$retorno = array();
+
+$n1 = $_POST['n1'];
+$n2 = $_POST['n2'];
+
+if($n1 == "NaN" || $n2 == "NaN" || empty($n1) || empty($n2)) {
+    header('HTTP/1.1 400 Parametro Invalido');
+    if($n1 == "NaN"){
+        $retorno['status'] = "ERRO";
+        $retorno['codigo'] = "1001";
+        $retorno['mensagem'] = 'Para realizar o cálculo é preciso enviar valores numéricos no campo Primeiro Número.';
+        echo json_encode($retorno);
+        exit;
+    };
+
+    if($n2 == "NaN"){
+        $retorno['status'] = "ERRO";
+        $retorno['codigo'] = "1002";
+        $retorno['mensagem'] = 'Para realizar o cálculo é preciso enviar valores numéricos no campo Segundo Número.';
+        echo json_encode($retorno);
+        exit;
+    };
+};
+
+$retorno['status'] = "SUCESSO";
+$retorno['operacoes'] = array(
+    'Soma' => $n1 + $n2,
+    'Subtração (' . $n1 . ' - ' . $n2 . ')' => $n1 - $n2,
+    'Subtração (' . $n2 . ' - ' . $n1 . ')' => $n2 - $n1,
+    'Multiplicação' => number_format($n2 * $n1,null,null,'.'),
+    'Divisão (' . $n1 . ' / ' . $n2 . ')' => number_format($n1 / $n2, 4),
+    'Divisão (' . $n2 . ' / ' . $n1 . ')' => number_format($n2 / $n1, 4),
+    'Porcentagem de ' . $n1 . ' para ' . $n2 . '' => number_format($n1 / $n2, 4) * 100 . '%',
+    'Porcentagem de ' . $n2 . ' para ' . $n1 . '' => number_format($n2 / $n1, 4) * 100 . '%',
+);
+echo json_encode($retorno);
+?>
