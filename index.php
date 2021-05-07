@@ -24,27 +24,42 @@
         <button id="sendButton" type="submit">Calcular</button>
     </form>
 </div>
+<div id="resultado" style="display:none">
+    <table class='table'>
+        <thead>
+            <th>Operação</th>
+            <th>Resultado</th>
+        </thead>
+        <tbody id="tabela">
+        </tbody>
+    </table>
+</div>
 
 <script>
 $(document).ready(function(){
    
         $("#sendButton").click(function(){
             event.preventDefault();
+            
             try{ 
-                if ($("#n1").val() == "")
+                if ($("#n1").val() == ""){
+                    $("#resultado").empty();
                     throw new Error("Deve ser inserido um número no campo 'Número 1'");
-                
-                if ($("#n2").val() == "")
+                   }
+
+                if ($("#n2").val() == ""){
+                    $("#resultado").empty();
                     throw new Error("Deve ser inserido um número no campo 'Número 2'");
-                }
+                   }
+            }
             catch (e){
                 window.alert(e);
+                return;
             }
             //convertendo valor do campo do input para Inteiro
             const n1 = parseInt($("#n1").val());
             const n2 = parseInt($("#n2").val());
             
-
             $.ajax({
                 url : "calculator.php",
                 async : true,
@@ -56,6 +71,23 @@ $(document).ready(function(){
                 datatype : 'json',
                 success : function(result){
                     console.log(result);
+                    let lista;
+                    $("#resultado").css("display","block");
+                    
+                    $.each(result['operacoes'], function(index, elemento){
+                        lista += '<tr>';
+                        lista +=    '<th>' + index + '</th>';
+                        lista +=    '<th> ' + elemento + '</th>';
+                        lista += '</tr>';
+                    });
+                    
+                    $("#tabela").html(lista);
+                },
+                error : function(result){
+                    $("#tabela").empty();
+                    $("#resultado").css("display","none");
+                    window.alert('Ocorreu um erro ao processar. \nCódigo do erro: ' + result['responseJSON']['codigo'] + '. \nMotivo: ' + result['responseJSON']['mensagem']);
+                   
                 }
             });
         });
