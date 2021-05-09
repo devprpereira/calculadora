@@ -36,11 +36,11 @@ $retorno['operacoes'] = array(
     'Soma' => $n1 + $n2,
     'Subtração (' . $n1 . ' - ' . $n2 . ')' => $n1 - $n2,
     'Subtração (' . $n2 . ' - ' . $n1 . ')' => $n2 - $n1,
-    'Multiplicação' => number_format($n2 * $n1,null,null,'.'),
+    'Multiplicação' => number_format($n2 * $n1,0,null,'.'),
     'Divisão (' . $n1 . ' / ' . $n2 . ')' => number_format($n1 / $n2, 4),
+    'Diferença (' . $n1 . ' / ' . $n2 . ') em %' => (number_format($n1 / $n2, 4)-1) * 100 . '%',
     'Divisão (' . $n2 . ' / ' . $n1 . ')' => number_format($n2 / $n1, 4),
-    'Porcentagem de ' . $n1 . ' para ' . $n2 . '' => number_format($n1 / $n2, 4) * 100 . '%',
-    'Porcentagem de ' . $n2 . ' para ' . $n1 . '' => number_format($n2 / $n1, 4) * 100 . '%',
+    'Diferença (' . $n2 . ' / ' . $n1 . ') em %' => (number_format($n2 / $n1, 4)-1) * 100 . '%',
 );
 echo json_encode($retorno);
 ?>
