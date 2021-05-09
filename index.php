@@ -18,7 +18,8 @@
                 <div class="row">
                     <div class="col-xl-5 col-lg-6 col-md-8 col-sm-10 mx-auto text-center form p-4">
                         <div class="px-2">
-                            <form method="POST"> Formulário de Calculadora
+                            <form method="POST"> 
+                                <h3>Calculadora</h3> <br />
                                 <div class="form-group">
                                     <label  for="n1" > Primeiro Número: 
                                         <input type="text"  class="form-control" name="n1" id="n1"/>
@@ -72,9 +73,10 @@ $(document).ready(function(){
                 return;
             }
             //convertendo valor do campo do input para Inteiro
-            const n1 = parseInt($("#n1").val());
-            const n2 = parseInt($("#n2").val());
+            let n1 = parseFloat($("#n1").val());
             
+            let n2 = parseFloat($("#n2").val());
+            console.log(n1+' '+n2);
             $.ajax({
                 url : "calculator.php",
                 async : true,

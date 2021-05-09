@@ -34,13 +34,13 @@ if($n1 == "NaN" || $n2 == "NaN" || empty($n1) || empty($n2)) {
 $retorno['status'] = "SUCESSO";
 $retorno['operacoes'] = array(
     'Soma' => $n1 + $n2,
-    'Subtração (' . $n1 . ' - ' . $n2 . ')' => $n1 - $n2,
-    'Subtração (' . $n2 . ' - ' . $n1 . ')' => $n2 - $n1,
+    'Subtração (' . $n1 . ' - ' . $n2 . ')' => bcsub( $n2 , $n1, 3),
+    'Subtração (' . $n2 . ' - ' . $n1 . ')' => bcsub( $n1 , $n2, 3),
     'Multiplicação' => number_format($n2 * $n1,0,null,'.'),
-    'Divisão (' . $n1 . ' / ' . $n2 . ')' => number_format($n1 / $n2, 4),
-    'Diferença (' . $n1 . ' / ' . $n2 . ') em %' => (number_format($n1 / $n2, 4)-1) * 100 . '%',
-    'Divisão (' . $n2 . ' / ' . $n1 . ')' => number_format($n2 / $n1, 4),
-    'Diferença (' . $n2 . ' / ' . $n1 . ') em %' => (number_format($n2 / $n1, 4)-1) * 100 . '%',
+    'Divisão (' . $n1 . ' / ' . $n2 . ')' => bcdiv($n1,$n2,4),
+    'Diferença (' . $n1 . ' / ' . $n2 . ') em %' => (bcdiv($n1,$n2,4) -1) * 100 . '%',
+    'Divisão (' . $n2 . ' / ' . $n1 . ')' => bcdiv($n2,$n1,4),
+    'Diferença (' . $n2 . ' / ' . $n1 . ') em %' =>  (bcdiv($n2,$n1,4) -1) * 100 . '%',
 );
 echo json_encode($retorno);
 ?>
