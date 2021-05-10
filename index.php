@@ -59,13 +59,13 @@ $(document).ready(function(){
             
             try{ 
                 if ($("#n1").val() == ""){
-                    $("#resultado").empty();
-                    throw new Error("Deve ser inserido um número no campo 'Número 1'");
+                    $("#resultado").css("display", "none");
+                    throw new Error("Deve ser inserido um número no campo 'Primeiro Número '");
                    }
 
                 if ($("#n2").val() == ""){
-                    $("#resultado").empty();
-                    throw new Error("Deve ser inserido um número no campo 'Número 2'");
+                    $("#resultado").css("display", "none");
+                    throw new Error("Deve ser inserido um número no campo 'Segundo Número'");
                    }
             }
             catch (e){
