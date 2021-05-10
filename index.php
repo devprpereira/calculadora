@@ -14,7 +14,7 @@
     
     <div class="container-fluid">
         <div class="row">
-            <div class="col-7">
+            <div class="form col-12">
                 <div class="row">
                     <div class="col-xl-5 col-lg-6 col-md-8 col-sm-10 mx-auto text-center form p-4">
                         <div class="px-2">
@@ -30,13 +30,16 @@
                                         <input type="text"  class="form-control" name="n2" id="n2"/>
                                     </label>    
                                 </div>
-                                <button id="sendButton" type="submit">Calcular</button>
+                                <button id="sendButton" type="submit" class="btn btn-success">Calcular</button>
                             </form>
                         </div>
                     </div>  
                 </div>
             </div>
-            <div class="col-5" id="resultado" style="display:none" >
+            <div class="col-0" id="resultado" style="display:none" >
+                <div class="text-center">
+                    <h3>Tabela Resultado</h3>
+                </div>
                 <table class='table'>
                     <thead>
                         <th>Operação</th>
@@ -59,12 +62,12 @@ $(document).ready(function(){
             
             try{ 
                 if ($("#n1").val() == ""){
-                    $("#resultado").css("display", "none");
+                    resetaLayout();
                     throw new Error("Deve ser inserido um número no campo 'Primeiro Número '");
                    }
 
                 if ($("#n2").val() == ""){
-                    $("#resultado").css("display", "none");
+                    resetaLayout();
                     throw new Error("Deve ser inserido um número no campo 'Segundo Número'");
                    }
             }
@@ -86,9 +89,13 @@ $(document).ready(function(){
                 },
                 datatype : 'json',
                 success : function(result){
-                    console.log(result);
                     let lista;
+                    console.log(result);
+                    $(".form").addClass("col-4 col-sm-12");
+                    $(".form").removeClass("col-12");
                     $("#resultado").css("display","block");
+                    $("#resultado").addClass("col-8 col-sm-12");
+                    $("#resultado").removeClass("col-0");
                     
                     $.each(result['operacoes'], function(index, elemento){
                         lista += '<tr>';
@@ -100,14 +107,22 @@ $(document).ready(function(){
                     $("#tabela").html(lista);
                 },
                 error : function(result){
-                    $("#tabela").empty();
-                    $("#resultado").css("display","none");
+                    resetaLayout();
                     window.alert('Ocorreu um erro ao processar. \nCódigo do erro: ' + result['responseJSON']['codigo'] + '. \nMotivo: ' + result['responseJSON']['mensagem']);
                    
                 }
             });
         });
 
+        function resetaLayout(){
+            $("#tabela").empty();
+                    $(".form").removeClass("col-4");
+                    $(".form").addClass("col-12");
+
+                    $("#resultado").css("display","none");
+                    $("#resultado").toggleClass("col-8");
+                    $("#resultado").toggleClass("col-0");
+        }
     
 });
 </script>
