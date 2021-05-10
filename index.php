@@ -91,10 +91,10 @@ $(document).ready(function(){
                 success : function(result){
                     let lista;
                     console.log(result);
-                    $(".form").addClass("col-4 col-sm-12");
+                    $(".form").addClass("col-4");
                     $(".form").removeClass("col-12");
                     $("#resultado").css("display","block");
-                    $("#resultado").addClass("col-8 col-sm-12");
+                    $("#resultado").addClass("col-8 ");
                     $("#resultado").removeClass("col-0");
                     
                     $.each(result['operacoes'], function(index, elemento){
