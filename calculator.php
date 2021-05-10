@@ -8,13 +8,13 @@
 
 header('Content-Type: application/json; charset: utf-8');
 $retorno = array();
+$n1 = filter_input(INPUT_POST, 'n1', FILTER_SANITIZE_NUMBER_FLOAT);
+$n2 = filter_input(INPUT_POST, 'n2', FILTER_SANITIZE_NUMBER_FLOAT);
+$retorno['n1'] = $n1;
 
-$n1 = $_POST['n1'];
-$n2 = $_POST['n2'];
-
-if($n1 == "NaN" || $n2 == "NaN" || empty($n1) || empty($n2)) {
+if( $n1  == false || $n2 == false ) {
     header('HTTP/1.1 400 Parametro Invalido');
-    if($n1 == "NaN"){
+    if($n1 == false){
         $retorno['status'] = "ERRO";
         $retorno['codigo'] = "1001";
         $retorno['mensagem'] = 'Para realizar o cálculo é preciso enviar valores numéricos no campo Primeiro Número.';
@@ -22,7 +22,7 @@ if($n1 == "NaN" || $n2 == "NaN" || empty($n1) || empty($n2)) {
         exit;
     };
 
-    if($n2 == "NaN"){
+    if($n2 == false){
         $retorno['status'] = "ERRO";
         $retorno['codigo'] = "1002";
         $retorno['mensagem'] = 'Para realizar o cálculo é preciso enviar valores numéricos no campo Segundo Número.';
@@ -37,7 +37,7 @@ $retorno['operacoes'] = array(
     'Subtração (' . $n1 . ' - ' . $n2 . ')' => bcsub( $n2 , $n1, 3),
     'Subtração (' . $n2 . ' - ' . $n1 . ')' => bcsub( $n1 , $n2, 3),
     'Multiplicação' => number_format($n2 * $n1,0,null,'.'),
-    'Divisão (' . $n1 . ' / ' . $n2 . ')' => bcdiv($n1,$n2,4),
+    'Divisão   (' . $n1 . ' / ' . $n2 . ')' => bcdiv($n1,$n2,4),
     'Diferença (' . $n1 . ' / ' . $n2 . ') em %' => (bcdiv($n1,$n2,4) -1) * 100 . '%',
     'Divisão (' . $n2 . ' / ' . $n1 . ')' => bcdiv($n2,$n1,4),
     'Diferença (' . $n2 . ' / ' . $n1 . ') em %' =>  (bcdiv($n2,$n1,4) -1) * 100 . '%',

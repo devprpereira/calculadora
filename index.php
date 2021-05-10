@@ -72,11 +72,10 @@ $(document).ready(function(){
                 window.alert(e);
                 return;
             }
-            //convertendo valor do campo do input para Inteiro
-            let n1 = parseFloat($("#n1").val());
-            
-            let n2 = parseFloat($("#n2").val());
-            console.log(n1+' '+n2);
+
+            let n1 = $("#n1").val();
+            let n2 = $("#n2").val();
+
             $.ajax({
                 url : "calculator.php",
                 async : true,
