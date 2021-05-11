@@ -22,7 +22,7 @@
                 <div class="row">
                     <div class="col-xl-5 col-lg-6 col-md-8 col-sm-10 mx-auto text-center form p-4">
                         <div class="px-2">
-                            <form method="POST"> 
+                            <form method="POST" autocomplete="off"> 
                                 <h3>Calculadora</h3> <br />
                                 <div class="form-group">
                                     <label  for="n1" > Primeiro Número: 
