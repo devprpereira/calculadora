@@ -20,7 +20,7 @@
         <div class="row">
             <div class="form col-12">
                 <div class="row">
-                    <div class="col-xl-5 col-lg-6 col-md-8 col-sm-10 mx-auto text-center form p-4">
+                    <div class="col-xl-5 col-lg-6 col-md-8 col-sm-10 mx-auto text-center p-4">
                         <div class="px-2">
                             <form method="POST" autocomplete="off"> 
                                 <h3>Calculadora de porcentagem</h3> <br />

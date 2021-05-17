@@ -34,11 +34,9 @@ $(document).ready(function(){
             success : function(result){
                 let lista;
                 console.log(result);
-                $(".form").addClass("col-6");
-                $(".form").removeClass("col-12");
+                $(".form").attr("class","form col-4");
+                $("#resultado").attr("class","col-8");
                 $("#resultado").css("display","block");
-                $("#resultado").addClass("col-3");
-                $("#resultado").removeClass("col-0");
                 
                 $.each(result['operacoes'], function(index, elemento){
                     lista += '<tr>';
@@ -63,12 +61,9 @@ $(document).ready(function(){
 
     function resetaLayout(){
         $("#tabela").empty();
-                $(".form").removeClass("col-6");
-                $(".form").addClass("col-12");
-
-                $("#resultado").css("display","none");
-                $("#resultado").toggleClass("col-3");
-                $("#resultado").toggleClass("col-0");
+        $(".form").attr("class","form col-12");
+        $("#resultado").attr("class","col-0");
+        $("#resultado").css("display","none");
     }
 
 });
