@@ -42,15 +42,15 @@ function situacao($imc){
                 return "NORMAL";
                 break;
         
-        case $imc >= 25 && $imc <= 29.9:
+        case $imc > 24.9 && $imc <= 29.9:
                 return "SOBREPRESO";
                 break;
         
-        case $imc >= 30 && $imc <= 39.9:
+        case $imc > 29.9 && $imc <= 39.9:
                 return "OBESIDADE";
                 break;
         
-        case $imc > 40:
+        case $imc > 39.9:
                 return "OBESIDADE GRAVE";
                 break;
 
